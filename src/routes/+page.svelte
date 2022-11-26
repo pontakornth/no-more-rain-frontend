@@ -1,10 +1,16 @@
 <script>
 	import { provinces } from '$lib/provinces';
+	import { searchAttractions } from '$lib/api';
 	let latitude = 0;
 	let longitude = 0;
 	$: geolocation = `${latitude},${longitude}`;
-	let province = 'กรุงเทพฯ';
+	let province = 'กรุงเทพมหานคร';
 	let keywords = '';
+	let errorMessage = '';
+	let places = [];
+
+	$: valid = keywords.length >= 2;
+	$: console.log(places);
 
 	function getCurrentLocation() {
 		if (navigator.geolocation) {
@@ -15,6 +21,18 @@
 				},
 				(err) => {}
 			);
+		}
+	}
+	async function search() {
+		try {
+			const response = await searchAttractions(keywords, geolocation, 9000, province);
+			if (response.status === 404) {
+				errorMessage = 'ไม่มีสถานที่';
+				return;
+			}
+			places = response.data;
+		} catch (e) {
+			console.error(e);
 		}
 	}
 </script>
@@ -50,7 +68,9 @@
 					id="keywords"
 				/>
 			</form>
-			<button class="btn btn-success">Search</button>
+			<button on:click|preventDefault={search} disabled={!valid} class="btn btn-success"
+				>Search</button
+			>
 		</div>
 	</div>
 	<div class="grid grid-cols-2 gap-8 w-3/4 lg:w-3/5">

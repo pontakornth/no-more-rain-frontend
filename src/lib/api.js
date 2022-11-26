@@ -14,9 +14,20 @@ export async function searchAttractions(keywords, geolocation, radius, province)
 		params: {
 			keywords,
 			geolocation,
+			location: geolocation,
 			provincename: province,
 			destination: province,
 			search_radius: radius
 		}
 	});
+}
+
+export function constructAddress(location) {
+	return [
+		location['address'],
+		location['sub_district'],
+		location['district'],
+		location['province'],
+		location['postcode']
+	].join(' ');
 }
