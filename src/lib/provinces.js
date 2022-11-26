@@ -1,4 +1,4 @@
-export const province_th = [
+export const provinces = [
 	'กรุงเทพฯ',
 	'กระบี่',
 	'กาญจนบุรี',
