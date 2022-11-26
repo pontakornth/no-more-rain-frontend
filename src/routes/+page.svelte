@@ -1,21 +1,54 @@
+<script>
+	import { provinces } from '$lib/provinces';
+	let latitude = 0;
+	let longitude = 0;
+	$: geolocation = `${latitude},${longitude}`;
+	let province = 'กรุงเทพฯ';
+	let keywords = '';
+
+	function getCurrentLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(
+				(position) => {
+					latitude = position.coords.latitude;
+					longitude = position.coords.longitude;
+				},
+				(err) => {}
+			);
+		}
+	}
+</script>
+
 <main class="h-full flex flex-col items-center justify-center p-8 space-y-8">
 	<div class="card w-3/4 lg:w-3/5 shadow-lg bg-base-100">
 		<div class="card-body space-y-8">
 			<h1 class="text-4xl font-bold">เที่ยวไร้ฝน</h1>
 			<form class="grid grid-cols-2 gap-4 items-center">
 				<label for="lat">ละติจูด</label>
-				<input class="input input-bordered" type="number" id="lat" />
+				<input bind:value={latitude} class="input input-bordered" type="number" id="lat" />
 				<label for="lon">ลองจิจูด</label>
-				<input class="input input-bordered" type="number" id="lon" />
+				<input bind:value={longitude} class="input input-bordered" type="number" id="lon" />
 				<div />
 				<div class="text-right space-y-2">
-					<button class="btn btn-primary">ใส่ตำแหน่งปัจจุบัน</button>
+					<button on:click|preventDefault={getCurrentLocation} class="btn btn-primary"
+						>ใส่ตำแหน่งปัจจุบัน</button
+					>
 					<span class="text-xs block">* ต้องการใช้ GPS</span>
 				</div>
 				<label for="province">จังหวัด</label>
-				<input id="province" type="text" class="input input-bordered" />
+				<select bind:value={province} id="province" class="select select-bordered text-right">
+					{#each provinces as province (province)}
+						<option value={province}>
+							{province}
+						</option>
+					{/each}
+				</select>
 				<label for="keywords">คีย์เวิร์ด</label>
-				<input class="col-span-2 input input-bordered" id="keywords" />
+				<input
+					bind:value={keywords}
+					class="col-span-2 text-left input input-bordered"
+					id="keywords"
+				/>
 			</form>
 			<button class="btn btn-success">Search</button>
 		</div>
@@ -55,4 +88,7 @@
 </main>
 
 <style>
+	:where(.input) {
+		@apply text-right;
+	}
 </style>
