@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const PREFIX = 'http://localhost:8080/no-more-rain/v1';
+const PREFIX = 'http://127.0.0.1:8080/no-more-rain/v1';
 
 /**
  * Get all attractions from the search

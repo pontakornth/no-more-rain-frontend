@@ -65,7 +65,7 @@
 				<label for="keywords">คีย์เวิร์ด</label>
 				<input
 					bind:value={keywords}
-					class="col-span-2 text-left input input-bordered"
+					class="col-span-2 text-left keyword input input-bordered"
 					id="keywords"
 				/>
 			</form>
@@ -89,7 +89,7 @@
 						<h2 class="card-title">{place.place_name}</h2>
 						<p>{constructAddress(place.location)}</p>
 						<div class="card-actions justify-end">
-							<button class="btn btn-info">รายละเอียด</button>
+							<a href={`/${place.place_id}`} class="btn btn-info">รายละเอียด</a>
 						</div>
 					</div>
 				</div>
@@ -101,5 +101,8 @@
 <style>
 	:where(.input) {
 		@apply text-right;
+	}
+	.keyword {
+		@apply text-left;
 	}
 </style>

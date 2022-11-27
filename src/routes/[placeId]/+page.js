@@ -4,7 +4,8 @@ import { getAttractionDetail } from '../../lib/api';
 /** @type {import('./$types').PageLoad} */
 export async function load({ params }) {
 	try {
-		// return await getAttractionDetail(params.placeId);
+		const result = await getAttractionDetail(params.placeId);
+		return result.data;
 	} catch (e) {
 		// TODO: Error handling
 		console.error(e);
