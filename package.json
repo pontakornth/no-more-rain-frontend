@@ -29,6 +29,7 @@
 	"dependencies": {
 		"@fontsource/noto-sans-thai": "^4.5.12",
 		"axios": "^1.2.0",
+		"chart.js": "^4.0.1",
 		"daisyui": "^2.42.1"
 	}
 }

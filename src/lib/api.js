@@ -22,6 +22,10 @@ export async function searchAttractions(keywords, geolocation, radius, province)
 	});
 }
 
+export async function getAttractionDetail(placeId) {
+	return axios.get(PREFIX + `/attractions/${placeId}`);
+}
+
 export function constructAddress(location) {
 	return [
 		location['address'],
