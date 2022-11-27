@@ -95,13 +95,13 @@
 		<div class="card-body flex flex-col space-y-8">
 			<header class="space-y-4">
 				<h1 class="text-4xl card-title font-bold">{data.place_name}</h1>
-				{#if placeInfo.introduction != null && placeInfo.introduction.length > 0}
-					<h2 class="text-xl font-semibold">{placeInfo.introduction}</h2>
+				{#if data.place_info != null && data.place_info.length > 0}
+					<h2 class="text-xl font-semibold">{data.place_info.introduction}</h2>
 				{/if}
 				<p class="text-lg text-neutral">{constructAddress(data.location)}</p>
-				{#if (placeInfo.detail != null) & (placeInfo.detail.length > 0)}
+				{#if (data.place_detail != null) & (data.place_detail > 0)}
 					<p class="text-lg text-info-content">
-						{placeInfo.detail}
+						{data.place_detail}
 					</p>
 				{/if}
 			</header>
