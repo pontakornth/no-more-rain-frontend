@@ -3,12 +3,20 @@
 	import { Chart } from 'chart.js/auto';
 	import { onMount } from 'svelte';
 	import Sunny from '~icons/mdi/weather-sunny';
+	import { constructAddress } from '../../lib/api';
 	const contact = {
 		phones: ['0999999999', '0123456789'],
 		fax: '99999999',
 		mobiles: ['1111111110', '2222222220'],
 		emails: ['example@mail.com', 'email@example.com'],
 		urls: ['https://google.com', 'https://dev.to']
+	};
+	const location = {
+		address: '919/1 ถนนสีลม',
+		sub_district: 'สีลม',
+		district: 'บางรัก',
+		province: 'กรุงเทพมหานคร',
+		postcode: '10500'
 	};
 	const weatherData = [
 		{
@@ -129,6 +137,7 @@
 			<header>
 				<h1 class="text-4xl card-title font-bold">พระตำหนัก</h1>
 				<h2 class="text-xl font-semibold">เชียงใหม่</h2>
+				<p class="text-lg text-neutral">{constructAddress(location)}</p>
 			</header>
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold">ข้อมูลติดต่อ</h2>
