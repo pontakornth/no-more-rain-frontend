@@ -81,6 +81,10 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{data.place_name}</title>
+</svelte:head>
+
 <main class="h-full flex flex-col items-center justify-center p-0 lg:p-8 space-y-8">
 	<div class="card card-compact card-bordered w-full lg:w-3/5">
 		{#if data.thumbnail_url && data.thumbnail_url.length > 0}

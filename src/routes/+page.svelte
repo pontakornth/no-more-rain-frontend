@@ -38,6 +38,9 @@
 	}
 </script>
 
+<svelte:head>
+	<title>เที่ยวไร้ฝน</title>
+</svelte:head>
 <main class="h-full flex flex-col items-center justify-center p-8 space-y-8">
 	<div class="card w-3/4 lg:w-3/5 shadow-lg bg-base-100">
 		<div class="card-body space-y-8">
