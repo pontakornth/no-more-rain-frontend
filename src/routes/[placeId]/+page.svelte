@@ -2,6 +2,14 @@
 	import { browser } from '$app/environment';
 	import { Chart } from 'chart.js/auto';
 	import { onMount } from 'svelte';
+	import Sunny from '~icons/mdi/weather-sunny';
+	const contact = {
+		phones: ['0999999999', '0123456789'],
+		fax: '99999999',
+		mobiles: ['1111111110', '2222222220'],
+		emails: ['example@mail.com', 'email@example.com'],
+		urls: ['https://google.com', 'https://dev.to']
+	};
 	const weatherData = [
 		{
 			avg_pm10: 31,
@@ -109,8 +117,8 @@
 	});
 </script>
 
-<main class="h-full flex flex-col items-center justify-center p-8 space-y-8">
-	<div class="card card-compact card-bordered w-3/4 lg:w-3/5">
+<main class="h-full flex flex-col items-center justify-center p-0 lg:p-8 space-y-8">
+	<div class="card card-compact card-bordered w-full lg:w-3/5">
 		<figure class="card-image">
 			<img
 				src="https://tatapi.tourismthailand.org/tatfs/Image/custompoi/Thumbnail/P03000001.jpg"
@@ -123,16 +131,56 @@
 				<h2 class="text-xl font-semibold">เชียงใหม่</h2>
 			</header>
 			<div class="space-y-4">
-				<h2 class="text-xl font-semibold">อุณหภูมิ</h2>
+				<h2 class="text-2xl font-bold">ข้อมูลติดต่อ</h2>
+				{#if contact.phones != null && contact.phones.length > 0}
+					<h3 class="text-xl font-semibold">โทรศัพท์</h3>
+					<ul class="list-disc pl-8">
+						{#each contact.phones as phone}
+							<li>{phone}</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if contact.mobiles != null && contact.mobiles.length > 0}
+					<h3 class="text-xl font-semibold">มือถือ</h3>
+					<ul class="list-disc pl-8">
+						{#each contact.mobiles as phone}
+							<li>{phone}</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if contact.emails != null && contact.emails.length > 0}
+					<h3 class="text-xl font-semibold">อีเมล</h3>
+					<ul class="list-disc pl-8">
+						{#each contact.emails as email}
+							<li>{email}</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if contact.urls != null && contact.urls.length > 0}
+					<h3 class="text-xl font-semibold">เว็บ</h3>
+					<ul class="list-disc pl-8">
+						{#each contact.urls as url}
+							<li>{url}</li>
+						{/each}
+					</ul>
+				{/if}
+				{#if contact.fax != null}
+					<h3 class="text-xl font-semibold">แฟ็กซ์</h3>
+					<p>{contact.fax}</p>
+				{/if}
+			</div>
+			<div class="space-y-4">
+				<h2 class="text-2xl font-bold">สภาพอากาศ</h2>
+				<h3 class="text-xl font-semibold">อุณหภูมิ</h3>
 				<canvas id="tempChart" bind:this={tempChart} />
-				<h2 class="text-xl font-semibold">คุณภาพอากาศ</h2>
+				<h3 class="text-xl font-semibold">คุณภาพอากาศ</h3>
 				<canvas id="airQualityChart" bind:this={airQualityChart} />
-				<h2 class="text-xl font-semibold">สภาพอากาศโดยรวม</h2>
-				<ul class="flex justify-evenly items-center">
+				<h3 class="text-xl font-semibold">สภาพอากาศโดยรวม</h3>
+				<ul class="grid grid-cols-2 lg:grid-cols-7 gap-8 text-center">
 					{#each weatherData as w (w.date)}
 						<li>
+							<Sunny class="text-4xl inline" />
 							<p>{w.date}</p>
-							<p>{w.weather_cond}</p>
 						</li>
 					{/each}
 				</ul>
