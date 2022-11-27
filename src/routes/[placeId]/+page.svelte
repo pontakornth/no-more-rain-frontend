@@ -4,6 +4,7 @@
 	import { onMount } from 'svelte';
 	import Sunny from '~icons/mdi/weather-sunny';
 	import { constructAddress } from '../../lib/api';
+	import { weatherToIcon } from './icon';
 
 	// TODO: Use Real data
 
@@ -201,7 +202,7 @@
 				<ul class="grid grid-cols-2 lg:grid-cols-7 gap-8 text-center">
 					{#each weatherData as w (w.date)}
 						<li>
-							<Sunny class="text-4xl inline" />
+							<svelte:component this={weatherToIcon[w.weather_cond]} class="text-4xl inline" />
 							<p>{w.date}</p>
 						</li>
 					{/each}
