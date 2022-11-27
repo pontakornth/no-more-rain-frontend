@@ -4,6 +4,16 @@
 	import { onMount } from 'svelte';
 	import Sunny from '~icons/mdi/weather-sunny';
 	import { constructAddress } from '../../lib/api';
+
+	// TODO: Use Real data
+
+	const placeInfo = {
+		introduction:
+			'เดอะ สีลมแกลเลอเรีย อาร์ตสเปซ เป็นห้องแสดงนิทรรศการหมุนเวียนการรวมผลงานทางศิลปะที่มากที่สุด ใหญ่ที่สุด และหลากหลายที่สุด',
+		detail:
+			'พื้นที่แสดงงานศิลปะที่จัดเป็นนิทรรศการหมุนเวียน โดยขึ้นชื่อว่าเป็นสถานที่รวบรวมผลงานศิลปะที่มากที่สุด ใหญ่ที่สุด และหลากหลายที่สุดแห่งหนึ่งของกรุงเทพมหานคร นอกจากจะเป็นแหล่งชุมนุมของ คนรักงานศิลป์แล้ว ยังเป็นสถานที่จุดประกายความคิดและสร้างแรงบันดาลใจใหม่ ๆ ให้แก่ผู้สนใจได้อีกมากมาย สำหรับนิทรรศการส่วนใหญ่ภายในแกลอรีแห่งนี้ ส่วนใหญ่เป็นงานศิลปะแนวร่วมสมัยและศิลปะสมัยใหม่ผสมผสานกันอย่างหลากหลาย นอกจากนี้ ภายในอาคารยังมีสิ่งอำนวยความสะดวกให้แก่นักท่องเที่ยวอีกมากมาย ครบครันไปด้วยร้านค้าต่าง ๆ ร้านอาหาร ส่วนบริเวณใกล้เคียง ยังเดินทางต่อไปยังแหล่งช้อปปิ้ง หรือย่านธุรกิจอื่น ๆ ได้อย่างง่ายดาย ที่ตั้ง : 919/1 ถนนสีลม เขตบางรัก กรุงเทพฯ สอบถามข้อมูล โทร.0 2630 3006-7'
+	};
+
 	const contact = {
 		phones: ['0999999999', '0123456789'],
 		fax: '99999999',
@@ -134,10 +144,17 @@
 			/>
 		</figure>
 		<div class="card-body flex flex-col space-y-8">
-			<header>
+			<header class="space-y-4">
 				<h1 class="text-4xl card-title font-bold">พระตำหนัก</h1>
-				<h2 class="text-xl font-semibold">เชียงใหม่</h2>
+				{#if placeInfo.introduction != null && placeInfo.introduction.length > 0}
+					<h2 class="text-xl font-semibold">{placeInfo.introduction}</h2>
+				{/if}
 				<p class="text-lg text-neutral">{constructAddress(location)}</p>
+				{#if (placeInfo.detail != null) & (placeInfo.detail.length > 0)}
+					<p class="text-lg text-info-content">
+						{placeInfo.detail}
+					</p>
+				{/if}
 			</header>
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold">ข้อมูลติดต่อ</h2>
@@ -180,10 +197,6 @@
 			</div>
 			<div class="space-y-4">
 				<h2 class="text-2xl font-bold">สภาพอากาศ</h2>
-				<h3 class="text-xl font-semibold">อุณหภูมิ</h3>
-				<canvas id="tempChart" bind:this={tempChart} />
-				<h3 class="text-xl font-semibold">คุณภาพอากาศ</h3>
-				<canvas id="airQualityChart" bind:this={airQualityChart} />
 				<h3 class="text-xl font-semibold">สภาพอากาศโดยรวม</h3>
 				<ul class="grid grid-cols-2 lg:grid-cols-7 gap-8 text-center">
 					{#each weatherData as w (w.date)}
@@ -193,6 +206,10 @@
 						</li>
 					{/each}
 				</ul>
+				<h3 class="text-xl font-semibold">อุณหภูมิ</h3>
+				<canvas id="tempChart" bind:this={tempChart} />
+				<h3 class="text-xl font-semibold">คุณภาพอากาศ</h3>
+				<canvas id="airQualityChart" bind:this={airQualityChart} />
 			</div>
 		</div>
 	</div>
