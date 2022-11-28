@@ -94,12 +94,12 @@
 		<div class="card-body flex flex-col space-y-8">
 			<header class="space-y-4">
 				<h1 class="text-4xl card-title font-bold">{data.place_name}</h1>
-				{#if data.place_info != null && data.place_info.length > 0}
-					<h2 class="text-xl font-semibold">{data.place_info.introduction}</h2>
+				{#if data.place_infomation != null && data.place_infomation.length > 0}
+					<h2 class="text-xl font-semibold">{data.place_infomation}</h2>
 				{/if}
 				<p class="text-lg">{constructAddress(data.location)}</p>
-				{#if (data.place_detail != null) & (data.place_detail > 0)}
-					<p class="text-lg text-info-content">
+				{#if data.place_detail != null && data.place_detail.length > 0}
+					<p class="text-lg">
 						{data.place_detail}
 					</p>
 				{/if}
