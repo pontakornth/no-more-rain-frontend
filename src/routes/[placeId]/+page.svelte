@@ -2,7 +2,6 @@
 	import { browser } from '$app/environment';
 	import { Chart } from 'chart.js/auto';
 	import { onMount } from 'svelte';
-	import Sunny from '~icons/mdi/weather-sunny';
 	import { constructAddress } from '../../lib/api';
 	import { weatherToIcon } from './icon';
 
@@ -111,7 +110,7 @@
 					<h3 class="text-xl font-semibold">โทรศัพท์</h3>
 					<ul class="list-disc pl-8">
 						{#each data.contact.phones as phone}
-							<li>{phone}</li>
+							<li><a class="underline" href="tel:{phone}">{phone}</a></li>
 						{/each}
 					</ul>
 				{/if}
@@ -119,7 +118,7 @@
 					<h3 class="text-xl font-semibold">มือถือ</h3>
 					<ul class="list-disc pl-8">
 						{#each data.contact.mobiles as phone}
-							<li>{phone}</li>
+							<li><a class="underline" href="tel:{phone}">{phone}</a></li>
 						{/each}
 					</ul>
 				{/if}
@@ -127,7 +126,7 @@
 					<h3 class="text-xl font-semibold">อีเมล</h3>
 					<ul class="list-disc pl-8">
 						{#each data.contact.emails as email}
-							<li>{email}</li>
+							<li><a href="mailto:{email}">email</a></li>
 						{/each}
 					</ul>
 				{/if}
@@ -135,7 +134,7 @@
 					<h3 class="text-xl font-semibold">เว็บ</h3>
 					<ul class="list-disc pl-8">
 						{#each data.contact.urls as url}
-							<li>{url}</li>
+							<li><a href={url}>{url}</a></li>
 						{/each}
 					</ul>
 				{/if}
