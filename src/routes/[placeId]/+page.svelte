@@ -98,7 +98,7 @@
 				{#if data.place_info != null && data.place_info.length > 0}
 					<h2 class="text-xl font-semibold">{data.place_info.introduction}</h2>
 				{/if}
-				<p class="text-lg text-neutral">{constructAddress(data.location)}</p>
+				<p class="text-lg">{constructAddress(data.location)}</p>
 				{#if (data.place_detail != null) & (data.place_detail > 0)}
 					<p class="text-lg text-info-content">
 						{data.place_detail}

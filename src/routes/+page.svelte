@@ -2,6 +2,7 @@
 	import { provinces } from '$lib/provinces';
 	import { searchAttractions } from '$lib/api';
 	import { constructAddress } from '../lib/api';
+	import Magnify from '~icons/mdi/magnify';
 	let latitude = 0;
 	let longitude = 0;
 	$: geolocation = `${latitude},${longitude}`;
@@ -73,7 +74,7 @@
 				/>
 			</form>
 			<button on:click|preventDefault={search} disabled={!valid} class="btn btn-success"
-				>Search</button
+				><Magnify /> Search</button
 			>
 		</div>
 	</div>
