@@ -126,7 +126,7 @@
 					<h3 class="text-xl font-semibold">อีเมล</h3>
 					<ul class="list-disc pl-8">
 						{#each data.contact.emails as email}
-							<li><a href="mailto:{email}">{email}</a></li>
+							<li class="underline"><a href="mailto:{email}">{email}</a></li>
 						{/each}
 					</ul>
 				{/if}
@@ -134,7 +134,7 @@
 					<h3 class="text-xl font-semibold">เว็บ</h3>
 					<ul class="list-disc pl-8">
 						{#each data.contact.urls as url}
-							<li><a href={url}>{url}</a></li>
+							<li class="underline"><a href="//{url}">{url}</a></li>
 						{/each}
 					</ul>
 				{/if}
