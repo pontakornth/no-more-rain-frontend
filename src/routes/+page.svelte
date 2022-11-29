@@ -73,8 +73,7 @@
 					id="keywords"
 				/>
 			</form>
-			<button on:click|preventDefault={search} disabled={!valid} class="btn btn-success"
-				><Magnify /> Search</button
+			<button on:click={search} disabled={!valid} class="btn btn-success"><Magnify /> Search</button
 			>
 		</div>
 	</div>
